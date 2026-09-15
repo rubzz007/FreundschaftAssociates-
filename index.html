@@ -1,0 +1,470 @@
+
+
+Index · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freundschaft Associates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171310;
+    --paper:#EDE6D8;
+    --paper-dim:#E2DAC8;
+    --chili:#C1421A;
+    --chili-dark:#8F2F12;
+    --mint:#245B4E;
+    --raspberry:#A32C4B;
+    --cream-text:#F3EEE2;
+    --line:rgba(23,19,16,0.16);
+    --line-dark:rgba(243,238,226,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Zilla Slab', serif;
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  a{color:inherit;}
+ 
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    overflow:hidden;
+    background:var(--ink);
+  }
+  .hero-split{
+    position:absolute;
+    inset:0;
+    display:flex;
+  }
+  .hero-half{
+    flex:1;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-half.chili{
+    background:linear-gradient(155deg, #D8511F 0%, var(--chili) 45%, var(--chili-dark) 100%);
+  }
+  .hero-half.rasp{
+    background:linear-gradient(205deg, #2C7A68 0%, var(--mint) 45%, var(--raspberry) 100%);
+  }
+  .hero-ghost{
+    position:absolute;
+    font-family:'Zilla Slab', serif;
+    font-weight:700;
+    color:rgba(255,255,255,0.14);
+    white-space:nowrap;
+    user-select:none;
+  }
+  .hero-half.chili .hero-ghost{
+    font-size:15vw;
+    left:-4%;
+    top:8%;
+    transform:rotate(-6deg);
+  }
+  .hero-half.rasp .hero-ghost{
+    font-size:15vw;
+    right:-6%;
+    bottom:4%;
+    transform:rotate(-6deg);
+  }
+  .hero-seam{
+    position:absolute;
+    top:0; bottom:0; left:50%;
+    width:2px;
+    background:rgba(255,255,255,0.35);
+    transform:translateX(-1px);
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    padding:48px 32px 64px;
+    color:var(--cream-text);
+  }
+  .eyebrow-row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:22px;
+    font-size:13px;
+    color:rgba(243,238,226,0.82);
+  }
+  .dot{
+    width:5px; height:5px; border-radius:50%;
+    background:currentColor;
+    opacity:0.7;
+  }
+  .hero h1{
+    font-size:clamp(40px, 7vw, 84px);
+    max-width:14ch;
+  }
+  .hero-sub{
+    margin-top:20px;
+    max-width:46ch;
+    font-size:clamp(16px, 2vw, 19px);
+    color:rgba(243,238,226,0.86);
+  }
+  .hero-tags{
+    margin-top:32px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .tag{
+    border:1px solid var(--line-dark);
+    padding:7px 14px;
+    border-radius:100px;
+    font-size:13px;
+    color:rgba(243,238,226,0.9);
+  }
+ 
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:96px 0; }
+  .section-head{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+    margin-bottom:56px;
+    align-items:end;
+    border-bottom:1px solid var(--line);
+    padding-bottom:28px;
+  }
+  .section-head h2{ font-size:clamp(28px, 4vw, 40px); max-width:16ch; }
+  .section-head p{ max-width:48ch; font-size:15.5px; color:rgba(23,19,16,0.72); }
+ 
+  /* ---------- ABOUT ---------- */
+  .about-body{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:64px;
+  }
+  .about-lead{
+    font-size:clamp(20px, 2.6vw, 26px);
+    font-family:'Zilla Slab', serif;
+    max-width:34ch;
+  }
+  .about-facts{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    border-left:1px solid var(--line);
+    padding-left:28px;
+  }
+  .fact-label{ font-size:12.5px; color:rgba(23,19,16,0.55); margin-bottom:4px; }
+  .fact-value{ font-size:16px; font-weight:600; }
+ 
+  /* ---------- BRANDS ---------- */
+  .brands{ background:var(--ink); color:var(--cream-text); }
+  .brands .section-head{ border-bottom-color:var(--line-dark); }
+  .brands .section-head p{ color:rgba(243,238,226,0.72); }
+  .brand-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  .brand-card{
+    padding:40px 32px;
+    position:relative;
+    overflow:hidden;
+  }
+  .brand-card.bs{
+    background:linear-gradient(165deg, #D8511F, var(--chili-dark));
+    transform:skewY(-1.2deg);
+    border-radius:4px;
+  }
+  .brand-card.bs > *{ transform:skewY(1.2deg); }
+  .brand-card.br{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:28px;
+    border:1px solid rgba(23,19,16,0.08);
+  }
+  .brand-kicker{
+    font-size:13px;
+    margin-bottom:14px;
+    opacity:0.85;
+  }
+  .brand-card h3{
+    font-size:30px;
+    margin-bottom:14px;
+  }
+  .brand-card p{
+    font-size:15px;
+    max-width:36ch;
+    margin-bottom:22px;
+  }
+  .brand-card.bs p{ color:rgba(255,255,255,0.88); }
+  .brand-card.br p{ color:rgba(23,19,16,0.72); }
+  .brand-stat-row{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+    margin-top:8px;
+  }
+  .brand-stat b{ display:block; font-size:22px; font-family:'Zilla Slab',serif; }
+  .brand-stat span{ font-size:12.5px; opacity:0.75; }
+  .brand-card.br .brand-stat b{ color:var(--raspberry); }
+  .scoop-row{
+    display:flex; gap:8px; margin-top:24px;
+  }
+  .scoop{
+    width:14px; height:14px; border-radius:50%;
+  }
+ 
+  /* ---------- REGISTRATION / GST ---------- */
+  .reg{
+    background:var(--paper-dim);
+  }
+  .cert{
+    border:1.5px solid var(--ink);
+    border-radius:2px;
+    padding:0;
+    position:relative;
+  }
+  .cert-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:24px 32px;
+    border-bottom:1px solid var(--line);
+  }
+  .cert-top .cert-label{ font-size:12.5px; letter-spacing:0.02em; color:rgba(23,19,16,0.6); }
+  .gstin{
+    font-size:clamp(20px, 3vw, 28px);
+    font-weight:600;
+    letter-spacing:0.02em;
+  }
+  .cert-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+  }
+  .cert-row{
+    padding:22px 32px;
+    border-bottom:1px solid var(--line);
+  }
+  .cert-row:nth-child(odd){ border-right:1px solid var(--line); }
+  .cert-row .fact-label{ margin-bottom:6px; }
+  .cert-row .fact-value{ font-size:15.5px; font-weight:500; }
+  @media (max-width:720px){
+    .cert-grid{ grid-template-columns:1fr; }
+    .cert-row:nth-child(odd){ border-right:none; }
+  }
+ 
+  /* ---------- LOCATION / FOOTER ---------- */
+  .contact{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+  }
+  .addr-block p{ font-size:15.5px; margin-bottom:6px; color:rgba(23,19,16,0.8); }
+  .addr-block .fact-label{ margin-top:18px; }
+  footer{
+    background:var(--ink);
+    color:rgba(243,238,226,0.6);
+    padding:32px 0;
+    font-size:13px;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+ 
+  @media (max-width:760px){
+    .about-body, .brand-grid, .contact{ grid-template-columns:1fr; }
+    .about-facts{ border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:20px; }
+    .section-head{ grid-template-columns:1fr; }
+    .hero-half.chili .hero-ghost, .hero-half.rasp .hero-ghost{ font-size:26vw; }
+  }
+</style>
+</head>
+<body>
+ 
+<header class="hero">
+  <div class="hero-split">
+    <div class="hero-half chili"><div class="hero-ghost">BS</div></div>
+    <div class="hero-half rasp"><div class="hero-ghost">BR</div></div>
+  </div>
+  <div class="hero-seam"></div>
+  <div class="hero-content wrap">
+    <div class="eyebrow-row">
+      <span>Partnership firm</span><span class="dot"></span>
+      <span>Bengaluru, Karnataka</span><span class="dot"></span>
+      <span>Est. franchise operator</span>
+    </div>
+    <h1>Freundschaft Associates</h1>
+    <p class="hero-sub">A Bengaluru-based partnership running two very different kitchens — Burger Singh's chargrilled, desi-spiced burgers and Baskin Robbins' 31 flavours — under one roof of ownership.</p>
+    <div class="hero-tags">
+      <span class="tag">GSTIN 29AAKFF1594N1ZP</span>
+      <span class="tag">Regular scheme</span>
+      <span class="tag">Retail &amp; services</span>
+    </div>
+  </div>
+</header>
+ 
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Two counters, one operator</h2>
+      <p>Freundschaft Associates was built on a simple bet: run a small number of franchise kitchens exceptionally well, rather than a large number adequately.</p>
+    </div>
+    <div class="about-body">
+      <p class="about-lead">We operate as a multi-brand franchise partnership out of Bengaluru — holding the counter-to-kitchen operations for Burger Singh and Baskin Robbins outlets, and everything behind them: staffing, supply, compliance, and the books.</p>
+      <div class="about-facts">
+        <div>
+          <div class="fact-label">Entity type</div>
+          <div class="fact-value">Partnership</div>
+        </div>
+        <div>
+          <div class="fact-label">Nature of business</div>
+          <div class="fact-value">Retail business, supplier of services</div>
+        </div>
+        <div>
+          <div class="fact-label">Base city</div>
+          <div class="fact-value">Bengaluru, Karnataka</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="brands" id="brands">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The brands we run</h2>
+      <p>Different menus, different rhythms — one operating standard across both.</p>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card bs">
+        <div class="brand-kicker">FRANCHISE — QUICK SERVICE</div>
+        <h3>Burger Singh</h3>
+        <p>Chargrilled patties, desi masalas, and a menu built for the Bengaluru lunch rush. Our outlets run on speed at the counter and consistency in the kitchen.</p>
+        <div class="brand-stat-row">
+          <div class="brand-stat"><b>Fast</b><span>counter turnaround</span></div>
+          <div class="brand-stat"><b>Daily</b><span>fresh grilled batches</span></div>
+        </div>
+      </div>
+      <div class="brand-card br">
+        <div class="brand-kicker">FRANCHISE — DESSERT &amp; SCOOPS</div>
+        <h3>Baskin Robbins</h3>
+        <p>31 flavours, cakes, and tubs — run as a neighbourhood treat stop rather than a fast-food afterthought, with year-round rotating specials.</p>
+        <div class="scoop-row">
+          <div class="scoop" style="background:#E88FAF"></div>
+          <div class="scoop" style="background:#F2C879"></div>
+          <div class="scoop" style="background:#7BC9B4"></div>
+          <div class="scoop" style="background:#B98CD9"></div>
+          <div class="scoop" style="background:#EA9A6E"></div>
+        </div>
+        <div class="brand-stat-row">
+          <div class="brand-stat"><b>31</b><span>flavours on rotation</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="reg" id="registration">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>GST registration</h2>
+      <p>Public registration details as recorded with the Karnataka GST department.</p>
+    </div>
+    <div class="cert">
+      <div class="cert-top">
+        <div>
+          <div class="cert-label">GST IDENTIFICATION NUMBER</div>
+          <div class="gstin mono">29AAKFF1594N1ZP</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="cert-label">STATE</div>
+          <div class="fact-value">Karnataka</div>
+        </div>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-row">
+          <div class="fact-label">Business name</div>
+          <div class="fact-value">Freundschaft Associates</div>
+        </div>
+        <div class="cert-row">
+          <div class="fact-label">Registration date</div>
+          <div class="fact-value">02 January 2025</div>
+        </div>
+        <div class="cert-row">
+          <div class="fact-label">Entity type</div>
+          <div class="fact-value">Partnership</div>
+        </div>
+        <div class="cert-row">
+          <div class="fact-label">Registration type</div>
+          <div class="fact-value">Regular</div>
+        </div>
+        <div class="cert-row">
+          <div class="fact-label">Jurisdictional office</div>
+          <div class="fact-value">LGSTO 015 — Bengaluru</div>
+        </div>
+        <div class="cert-row">
+          <div class="fact-label">Department code</div>
+          <div class="fact-value mono">KA003 · YT0802 · RANGE-BED8</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section id="contact">
+  <div class="wrap contact">
+    <div class="addr-block">
+      <div class="section-head" style="border-bottom:none; margin-bottom:20px; padding-bottom:0;">
+        <h2 style="grid-column:1 / -1;">Registered address</h2>
+      </div>
+      <p>Radha Reddy Layout</p>
+      <p>14, Ground Floor, 3rd Main Road</p>
+      <p>Bengaluru, Karnataka</p>
+      <p>560035</p>
+      <div class="fact-label">Pincode</div>
+      <div class="fact-value">560035</div>
+    </div>
+    <div class="addr-block">
+      <div class="section-head" style="border-bottom:none; margin-bottom:20px; padding-bottom:0;">
+        <h2 style="grid-column:1 / -1;">Enquiries</h2>
+      </div>
+      <p>For franchise, vendor, or landlord enquiries, reach the partnership office directly.</p>
+      <div class="fact-label" style="margin-top:18px;">Business hours</div>
+      <div class="fact-value">Mon – Sat, 10:00 – 19:00 IST</div>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  <div class="wrap">
+    <span>© 2026 Freundschaft Associates</span>
+    <span>GSTIN 29AAKFF1594N1ZP · Bengaluru, Karnataka</span>
+  </div>
+</footer>
+ 
+</body>
+</html>
+ 
